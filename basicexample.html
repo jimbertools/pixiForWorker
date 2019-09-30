@@ -1,0 +1,31 @@
+<style>
+  canvas {
+    border: 1px solid black;
+  }
+</style>
+
+<script src="pixiv5_worker.js"></script>
+
+<body>
+  <canvas width=1712 height=896></canvas>
+
+  
+</body>
+
+<script>
+
+const offscreen = document.querySelector('canvas').transferControlToOffscreen();
+
+var w = new Worker("worker.js")
+
+
+w.postMessage({
+                    type: "start",
+                    hostname: window.location.hostname,
+                    width: 500,
+                    height: 500,
+                    canvas: offscreen,
+
+                }, [offscreen])
+
+</script>
